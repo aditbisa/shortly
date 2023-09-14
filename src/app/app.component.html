@@ -1,10 +1,10 @@
 <header
-  class="app-content relative flex h-16 items-center justify-between px-[20px]"
+  class="app-content relative flex h-[64px] items-center justify-between gap-8 md:h-[120px]"
 >
-  <a href="/" class="text-[32px] font-semibold text-gray-800">Shortly</a>
+  <a href="/" class="me-10 text-[32px] font-semibold text-gray-800">Shortly</a>
 
   <button
-    class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+    class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden"
     (click)="popupMenuVisible = !popupMenuVisible"
   >
     <svg
@@ -25,44 +25,59 @@
   </button>
 
   <div
-    class=""
+    class="md:grow"
     [ngClass]="
       popupMenuVisible
-        ? 'app-content absolute left-0 top-[100%] w-full'
-        : 'hidden'
+        ? 'max-md:app-content left-0 top-[100%] z-10 w-full max-md:absolute'
+        : 'max-md:hidden'
     "
   >
     <nav
       [ngClass]="
-        popupMenuVisible ? 'rounded-lg bg-gray-800 text-center text-white' : ''
+        popupMenuVisible
+          ? 'rounded-lg max-md:bg-gray-800 max-md:text-center max-md:text-white'
+          : ''
       "
     >
-      <ul class="flex flex-col justify-around gap-6 py-12">
+      <ul
+        class="flex flex-col justify-around gap-8 py-12 text-[19px] md:flex-row md:items-center md:text-[20px] md:text-gray-500"
+      >
         <li><a href="#">Features</a></li>
         <li><a href="#">Pricing</a></li>
         <li><a href="#">Resources</a></li>
-        <li><hr class="-mx-8 border-gray-600" /></li>
+        <li class="md:grow"><hr class="border-gray-600 md:hidden" /></li>
         <li><a href="#">Login</a></li>
-        <li><a href="#" class="app-btn-sign">Sign Up</a></li>
+        <li class="md:w-[150px]">
+          <a href="#" class="app-btn-sign">Sign Up</a>
+        </li>
       </ul>
     </nav>
   </div>
 </header>
 
-<div class="app-content mb-4 overflow-x-hidden">
-  <img
-    src="/assets/images/illustration-working.svg"
-    class="-mr-[100px] ml-auto h-[260px] w-auto min-w-[395px]"
-  />
-</div>
+<main class="relative">
+  <!-- <div class="app-container">
+    <div
+      class="app-content float-right h-[520px] bg-[url('/assets/images/illustration-working.svg')] bg-[length:50%_auto] bg-right bg-no-repeat"
+    >
+      &nbsp;
+    </div>
+  </div> -->
+  <div
+    class="max-md:app-content mb-4 overflow-x-hidden md:absolute md:right-0 md:-z-10"
+  >
+    <img
+      src="/assets/images/illustration-working.svg"
+      class="-mr-[100px] ml-auto h-[260px] w-auto min-w-[395px] md:h-[520px]"
+    />
+  </div>
 
-<main>
-  <article class="text-center">
-    <div class="app-content">
-      <h1 class="mb-4 text-[42px] font-bold leading-tight">
+  <article class="text-center md:pt-[150px]">
+    <div class="app-content md:ml-0 md:w-[50%] md:text-start">
+      <h1 class="mb-4 text-[42px] font-bold leading-tight md:text-[64px]">
         More than just shorter links
       </h1>
-      <p class="mb-4 text-[20px] text-gray-500">
+      <p class="mb-6 text-[20px] text-gray-500">
         Build your brand's recognition and get detailed insights on how your
         links are performing.
       </p>
@@ -71,57 +86,61 @@
       </p>
     </div>
 
-    <div class="app-container mt-12 bg-gray-100">
-      <div class="bg-gradient-to-b from-white from-50% to-transparent to-50%">
-        <div class="app-content">
-          <div
-            class="mb-4 mt-8 rounded-lg bg-[url('/assets/images/bg-form-mobile.svg')] bg-cover p-4"
-          >
-            <form class="flex flex-col gap-4">
-              <input
-                placeholder="Enter your link here"
-                class="rounded-lg border border-green-500 px-6 py-4 text-lg outline-none hover:border-blue-500 focus:border-blue-500 active:border-blue-500"
-              />
-              <span class="hidden text-start text-red-500"
-                >Please add a link</span
-              >
-              <button class="app-btn">Shorten it!</button>
-            </form>
-          </div>
+    <div
+      class="app-container mt-12 bg-gradient-to-b from-transparent from-50% to-gray-100 to-50%"
+    >
+      <div class="app-content">
+        <div
+          class="mt-8 flex h-[200px] items-center justify-center rounded-lg bg-[url('/assets/images/bg-form-mobile.svg')] bg-cover"
+        >
+          <form class="flex grow flex-col gap-4 p-8 md:flex-row">
+            <input
+              placeholder="Enter your link here"
+              class="rounded-lg border border-green-500 px-6 py-4 text-lg outline-none hover:border-blue-500 focus:border-blue-500 active:border-blue-500 md:grow"
+            />
+            <span class="hidden text-start text-red-500"
+              >Please add a link</span
+            >
+            <button class="app-btn">Shorten it!</button>
+          </form>
         </div>
       </div>
+    </div>
 
+    <div class="app-container bg-gray-100 pt-8">
       <div class="app-content">
         <div class="text-start">
-          <div class="mb-2 mt-6 px-4 text-lg font-semibold text-gray-400">
+          <div class="mb-2 px-4 text-lg font-semibold text-gray-400">
             Your links
           </div>
 
           <ul class="flex flex-col justify-around gap-4">
-            <li class="app-card-white flex flex-col justify-around gap-2">
-              <div>https://brimvoid.com</div>
-              <hr />
-              <div class="text-lg text-teal-500">https://re.link/aaa</div>
-              <div><button class="app-btn w-full">Copy</button></div>
-            </li>
-            <li class="app-card-white flex flex-col justify-around gap-2">
-              <div>https://brimvoid.com</div>
-              <hr />
-              <div class="text-lg text-teal-500">https://re.link/bbb</div>
-              <div><button class="app-btn w-full">Copy</button></div>
-            </li>
+            <ng-template ngFor let-link [ngForOf]="userLinks">
+              <li
+                class="app-card-white flex flex-col justify-between gap-2 md:flex-row md:items-center md:gap-8 md:px-8"
+              >
+                <div class="md:grow md:text-[20px]">{{ link.url }}</div>
+                <hr class="-mx-4 md:hidden" />
+                <div class="text-lg text-teal-500 md:text-[22px]">
+                  {{ link.shortUrl }}
+                </div>
+                <div><button class="app-btn w-full">Copy</button></div>
+              </li>
+            </ng-template>
           </ul>
         </div>
 
-        <article class="mt-10 pb-10">
-          <h2 class="mb-3 text-[30px] font-semibold">Advanced Statistic</h2>
-          <p class="text-[18px] text-gray-500">
-            Track how your links are performing across the web with our advanced
-            statistics dashboard.
-          </p>
+        <article class="mt-14 pb-10">
+          <div class="m-auto md:w-[50%]">
+            <h2 class="mb-3 text-[30px] font-semibold">Advanced Statistic</h2>
+            <p class="text-[18px] text-gray-500">
+              Track how your links are performing across the web with our
+              advanced statistics dashboard.
+            </p>
+          </div>
 
           <div
-            class="relative before:absolute before:bottom-0 before:left-0 before:right-0 before:top-0 before:m-auto before:block before:w-2 before:bg-teal-400"
+            class="relative before:absolute before:bottom-0 before:left-0 before:right-0 before:top-0 before:m-auto before:block before:bg-teal-400 max-md:before:w-2 md:mt-14 md:flex md:flex-row md:items-center md:gap-8 md:before:h-2"
           >
             <section class="benefit">
               <div>
@@ -161,10 +180,10 @@
     </div>
 
     <div
-      class="flex h-[250px] items-center justify-center bg-[url('/assets/images/bg-boost-mobile.svg')] bg-cover"
+      class="flex h-[250px] items-center justify-center bg-cover max-md:bg-[url('/assets/images/bg-boost-mobile.svg')] md:bg-[url('/assets/images/bg-boost-desktop.svg')]"
     >
       <div>
-        <p class="mb-6 text-[28px] font-semibold text-white">
+        <p class="mb-6 text-[28px] font-semibold text-white md:text-[34px]">
           Boost your links today
         </p>
         <p><a href="#" class="app-btn-sign">Get Started</a></p>
@@ -174,39 +193,45 @@
 </main>
 
 <div class="app-container bg-neutral-800">
-  <footer class="app-content flex flex-col justify-between p-10 text-center">
-    <div class="mb-8 text-[28px] text-gray-100">Shortly</div>
+  <footer
+    class="app-content flex flex-col justify-between py-10 max-md:justify-between max-md:text-center md:flex-row"
+  >
+    <div class="mb-8 text-[28px] text-gray-100 md:w-[220px]">Shortly</div>
 
-    <div class="mb-6">
-      <div class="mb-2 text-[18px] text-gray-100">Features</div>
-      <ul class="text-[14px] text-gray-400 [&_li]:mb-2">
-        <li>Link Shortening</li>
-        <li>Branded Links</li>
-        <li>Analytics</li>
-      </ul>
-    </div>
+    <div class="flex flex-col gap-6 max-md:mb-8 md:flex-row md:gap-14">
+      <div>
+        <div class="mb-2 text-[18px] text-gray-100">Features</div>
+        <ul class="text-[14px] text-gray-400 [&_li]:mb-2">
+          <li>Link Shortening</li>
+          <li>Branded Links</li>
+          <li>Analytics</li>
+        </ul>
+      </div>
 
-    <div class="mb-6">
-      <div class="mb-2 text-gray-100">Resources</div>
-      <ul class="text-[14px] text-gray-400 [&_li]:mb-2">
-        <li>Blog</li>
-        <li>Developers</li>
-        <li>Support</li>
-      </ul>
-    </div>
+      <div>
+        <div class="mb-2 text-gray-100">Resources</div>
+        <ul class="text-[14px] text-gray-400 [&_li]:mb-2">
+          <li>Blog</li>
+          <li>Developers</li>
+          <li>Support</li>
+        </ul>
+      </div>
 
-    <div class="mb-6">
-      <div class="mb-2 text-gray-100">Company</div>
-      <ul class="text-[14px] text-gray-400 [&_li]:mb-2">
-        <li>About</li>
-        <li>Our Team</li>
-        <li>Careers</li>
-        <li>Contact</li>
-      </ul>
+      <div>
+        <div class="mb-2 text-gray-100">Company</div>
+        <ul class="text-[14px] text-gray-400 [&_li]:mb-2">
+          <li>About</li>
+          <li>Our Team</li>
+          <li>Careers</li>
+          <li>Contact</li>
+        </ul>
+      </div>
     </div>
 
     <div>
-      <ul class="mx-auto flex w-[220px] flex-row justify-between">
+      <ul
+        class="mx-auto flex w-[220px] flex-row max-md:justify-between md:justify-end md:gap-6"
+      >
         <li>
           <a href="#" target="_blank"
             ><img

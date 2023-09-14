@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 
+interface UserLink {
+  url: string;
+  shortUrl: string;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,5 +12,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   /** UI State */
-  popupMenuVisible: boolean = false;
+  popupMenuVisible: boolean = true;
+
+  /** Data */
+  userLinks: UserLink[] = [
+    { url: 'https://adit-bisa.com', shortUrl: 'https://adit.bisa' },
+    { url: 'https://brimvoid.com', shortUrl: 'https://re.link/aJw' },
+  ];
 }
