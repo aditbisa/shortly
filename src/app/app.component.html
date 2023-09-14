@@ -1,144 +1,245 @@
-<header>
-  <a href="/">Shortly</a>
-  <nav>
-    <ul>
-      <li><a href="#">Features</a></li>
-      <li><a href="#">Pricing</a></li>
-      <li><a href="#">Resources</a></li>
-      <li><a href="#">Login</a></li>
-      <li><a href="#">Sign Up</a></li>
-    </ul>
-  </nav>
+<header
+  class="app-content relative flex h-16 items-center justify-between px-[20px]"
+>
+  <a href="/" class="text-[32px] font-semibold text-gray-800">Shortly</a>
+
+  <button
+    class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+    (click)="popupMenuVisible = !popupMenuVisible"
+  >
+    <svg
+      class="h-5 w-5"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 17 14"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M1 1h15M1 7h15M1 13h15"
+      />
+    </svg>
+  </button>
+
+  <div
+    class=""
+    [ngClass]="
+      popupMenuVisible
+        ? 'app-content absolute left-0 top-[100%] w-full'
+        : 'hidden'
+    "
+  >
+    <nav
+      [ngClass]="
+        popupMenuVisible ? 'rounded-lg bg-gray-800 text-center text-white' : ''
+      "
+    >
+      <ul class="flex flex-col justify-around gap-6 py-12">
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Resources</a></li>
+        <li><hr class="-mx-8 border-gray-600" /></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#" class="app-btn-sign">Sign Up</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
-<main>
-  <article>
-    <h1>More than just shorter links</h1>
-    <p>
-      Build your brand's recognition and get detailed insights on how your links
-      are performing.
-    </p>
-    <p>
-      <a href="#">Get Started</a>
-    </p>
+<div class="app-content mb-4 overflow-x-hidden">
+  <img
+    src="/assets/images/illustration-working.svg"
+    class="-mr-[100px] ml-auto h-[260px] w-auto min-w-[395px]"
+  />
+</div>
 
-    <div>
-      <form>
-        <input placeholder="Enter your link here" />
-        <button type="submit">Shorten it!</button>
-      </form>
+<main>
+  <article class="text-center">
+    <div class="app-content">
+      <h1 class="mb-4 text-[42px] font-bold leading-tight">
+        More than just shorter links
+      </h1>
+      <p class="mb-4 text-[20px] text-gray-500">
+        Build your brand's recognition and get detailed insights on how your
+        links are performing.
+      </p>
+      <p>
+        <a href="#" class="app-btn-sign">Get Started</a>
+      </p>
     </div>
 
-    <div>
-      <div>Your links</div>
-
-      <div>
-        <div>
-          <div>https://brimvoid.com</div>
-          <div>https://re.link/aaa</div>
-          <div><button>Copy</button></div>
+    <div class="app-container mt-12 bg-gray-100">
+      <div class="bg-gradient-to-b from-white from-50% to-transparent to-50%">
+        <div class="app-content">
+          <div
+            class="mb-4 mt-8 rounded-lg bg-[url('/assets/images/bg-form-mobile.svg')] bg-cover p-4"
+          >
+            <form class="flex flex-col gap-4">
+              <input
+                placeholder="Enter your link here"
+                class="rounded-lg border border-green-500 px-6 py-4 text-lg outline-none hover:border-blue-500 focus:border-blue-500 active:border-blue-500"
+              />
+              <span class="hidden text-start text-red-500"
+                >Please add a link</span
+              >
+              <button class="app-btn">Shorten it!</button>
+            </form>
+          </div>
         </div>
+      </div>
+
+      <div class="app-content">
+        <div class="text-start">
+          <div class="mb-2 mt-6 px-4 text-lg font-semibold text-gray-400">
+            Your links
+          </div>
+
+          <ul class="flex flex-col justify-around gap-4">
+            <li class="app-card-white flex flex-col justify-around gap-2">
+              <div>https://brimvoid.com</div>
+              <hr />
+              <div class="text-lg text-teal-500">https://re.link/aaa</div>
+              <div><button class="app-btn w-full">Copy</button></div>
+            </li>
+            <li class="app-card-white flex flex-col justify-around gap-2">
+              <div>https://brimvoid.com</div>
+              <hr />
+              <div class="text-lg text-teal-500">https://re.link/bbb</div>
+              <div><button class="app-btn w-full">Copy</button></div>
+            </li>
+          </ul>
+        </div>
+
+        <article class="mt-10 pb-10">
+          <h2 class="mb-3 text-[30px] font-semibold">Advanced Statistic</h2>
+          <p class="text-[18px] text-gray-500">
+            Track how your links are performing across the web with our advanced
+            statistics dashboard.
+          </p>
+
+          <div
+            class="relative before:absolute before:bottom-0 before:left-0 before:right-0 before:top-0 before:m-auto before:block before:w-2 before:bg-teal-400"
+          >
+            <section class="benefit">
+              <div>
+                <img src="/assets/images/icon-brand-recognition.svg" />
+              </div>
+              <h3>Brand Recognition</h3>
+              <p>
+                Boost your brand recognition with each click. Generic links
+                don't mean a thing. Branded links help instil confidence in your
+                content.
+              </p>
+            </section>
+            <section class="benefit">
+              <div>
+                <img src="/assets/images/icon-detailed-records.svg" />
+              </div>
+              <h3>Detailed Records</h3>
+              <p>
+                Gain insights into who is clicking your links. Knowing when and
+                where people engage with your content helps inform better
+                decisions.
+              </p>
+            </section>
+            <section class="benefit">
+              <div>
+                <img src="/assets/images/icon-fully-customizable.svg" />
+              </div>
+              <h3>Fully Customizable</h3>
+              <p>
+                Improve brand awareness and content discoverability through
+                customizable links, supercharging audience engagement.
+              </p>
+            </section>
+          </div>
+        </article>
       </div>
     </div>
 
-    <article>
-      <h2>Advanced Statistic</h2>
-      <p>
-        Track how your links are performing across the web with our advanced
-        statistics dashboard.
-      </p>
-
-      <section>
-        <h3>Brand Recognition</h3>
-        <p>
-          Boost your brand recognition with each click. Generic links don't mean
-          a thing. Branded links help instil confidence in your content.
+    <div
+      class="flex h-[250px] items-center justify-center bg-[url('/assets/images/bg-boost-mobile.svg')] bg-cover"
+    >
+      <div>
+        <p class="mb-6 text-[28px] font-semibold text-white">
+          Boost your links today
         </p>
-      </section>
-      <section>
-        <h3>Detailed Records</h3>
-        <p>
-          Gain insights into who is clicking your links. Knowing when and where
-          people engage with your content helps inform better decisions.
-        </p>
-      </section>
-      <section>
-        <h3>Fully Customizable</h3>
-        <p>
-          Improve brand awareness and content discoverability through
-          customizable links, supercharging audience engagement.
-        </p>
-      </section>
-    </article>
-
-    <div>
-      <p>Boost your links today</p>
-      <p><a href="#">Get Started</a></p>
+        <p><a href="#" class="app-btn-sign">Get Started</a></p>
+      </div>
     </div>
   </article>
 </main>
 
-<footer>
-  <div>Shortly</div>
+<div class="app-container bg-neutral-800">
+  <footer class="app-content flex flex-col justify-between p-10 text-center">
+    <div class="mb-8 text-[28px] text-gray-100">Shortly</div>
 
-  <div>
-    <div>Features</div>
-    <ul>
-      <li>Link Shortening</li>
-      <li>Branded Links</li>
-      <li>Analytics</li>
-    </ul>
-  </div>
+    <div class="mb-6">
+      <div class="mb-2 text-[18px] text-gray-100">Features</div>
+      <ul class="text-[14px] text-gray-400 [&_li]:mb-2">
+        <li>Link Shortening</li>
+        <li>Branded Links</li>
+        <li>Analytics</li>
+      </ul>
+    </div>
 
-  <div>
-    <div>Resources</div>
-    <ul>
-      <li>Blog</li>
-      <li>Developers</li>
-      <li>Support</li>
-    </ul>
-  </div>
+    <div class="mb-6">
+      <div class="mb-2 text-gray-100">Resources</div>
+      <ul class="text-[14px] text-gray-400 [&_li]:mb-2">
+        <li>Blog</li>
+        <li>Developers</li>
+        <li>Support</li>
+      </ul>
+    </div>
 
-  <div>
-    <div>Company</div>
-    <ul>
-      <li>About</li>
-      <li>Our Team</li>
-      <li>Careers</li>
-      <li>Contact</li>
-    </ul>
-  </div>
+    <div class="mb-6">
+      <div class="mb-2 text-gray-100">Company</div>
+      <ul class="text-[14px] text-gray-400 [&_li]:mb-2">
+        <li>About</li>
+        <li>Our Team</li>
+        <li>Careers</li>
+        <li>Contact</li>
+      </ul>
+    </div>
 
-  <div>
-    <ul>
-      <li>
-        <a href="#" target="_blank"
-          ><img
-            src="/assets/images/icon-instagram.svg"
-            alt="Link to our Instagram account"
-        /></a>
-      </li>
-      <li>
-        <a href="#" target="_blank"
-          ><img
-            src="/assets/images/icon-pinterest.svg"
-            alt="Link to our Pinterest account"
-        /></a>
-      </li>
-      <li>
-        <a href="#" target="_blank"
-          ><img
-            src="/assets/images/icon-twitter.svg"
-            alt="Link to our Twitter account"
-        /></a>
-      </li>
-      <li>
-        <a href="#" target="_blank"
-          ><img
-            src="/assets/images/icon-facebook.svg"
-            alt="Link to our Facebook account"
-        /></a>
-      </li>
-    </ul>
-  </div>
-</footer>
+    <div>
+      <ul class="mx-auto flex w-[220px] flex-row justify-between">
+        <li>
+          <a href="#" target="_blank"
+            ><img
+              class="w-31 h-auto"
+              src="/assets/images/icon-instagram.svg"
+              alt="Link to our Instagram account"
+          /></a>
+        </li>
+        <li>
+          <a href="#" target="_blank"
+            ><img
+              class="w-31 h-auto"
+              src="/assets/images/icon-pinterest.svg"
+              alt="Link to our Pinterest account"
+          /></a>
+        </li>
+        <li>
+          <a href="#" target="_blank"
+            ><img
+              class="w-31 h-auto"
+              src="/assets/images/icon-twitter.svg"
+              alt="Link to our Twitter account"
+          /></a>
+        </li>
+        <li>
+          <a href="#" target="_blank"
+            ><img
+              class="w-31 h-auto"
+              src="/assets/images/icon-facebook.svg"
+              alt="Link to our Facebook account"
+          /></a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+</div>
