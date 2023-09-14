@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { ShortlyService } from '@services/shortly.service';
-import { UserLink } from '@schemas/shortly';
+import { UserLink } from '@schemas/shortly.schema';
 
 interface UserLinkView extends UserLink {
   copied: boolean;
