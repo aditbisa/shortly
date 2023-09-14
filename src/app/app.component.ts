@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { catchError, of, tap } from 'rxjs';
+import { Observable, Subscription, catchError, map, of, tap } from 'rxjs';
 
 import { ShortlyService } from '@services/shortly.service';
 import { UserLink } from '@schemas/shortly.schema';
@@ -23,18 +23,23 @@ export class AppComponent {
   errorMsg: string = '';
 
   /** Data */
-  userLinks: UserLinkView[] = [
-    {
-      url: 'https://adit-bisa.com',
-      shortUrl: 'https://adit.bisa',
-      copied: false,
-    },
-    {
-      url: 'https://brimvoid.com',
-      shortUrl: 'https://re.link/aJw',
-      copied: false,
-    },
-  ];
+  userLinks: UserLinkView[] = [];
+  subs: Subscription[] = [];
+
+  /** Angular LifeCycle: OnInit. */
+  ngOnInit() {
+    const s1 = this.shortly.links$.subscribe((links: UserLink[]) => {
+      this.userLinks = links.map((link: UserLink) => {
+        return { ...link, copied: false };
+      });
+    });
+    this.subs.push(s1);
+  }
+
+  /** Angular LifeCycle: OnDestroy. */
+  ngOnDestroy() {
+    this.subs.forEach((sub) => sub.unsubscribe());
+  }
 
   /**
    * Process input url.
@@ -52,12 +57,7 @@ export class AppComponent {
     this.shortly
       .short(this.inputUrl)
       .pipe(
-        tap((shortUrl: string) => {
-          this.userLinks.push({
-            url: this.inputUrl,
-            shortUrl,
-            copied: false,
-          });
+        tap(() => {
           this.inputUrl = '';
         }),
         catchError((err: Error) => {

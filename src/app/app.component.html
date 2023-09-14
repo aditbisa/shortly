@@ -115,7 +115,7 @@
 
     <div class="app-container bg-gray-100 pt-8">
       <div class="app-content">
-        <div class="text-start">
+        <div class="text-start" [class.hidden]="!userLinks.length">
           <div class="mb-2 px-4 text-lg font-semibold text-gray-400">
             Your links
           </div>
