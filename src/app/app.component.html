@@ -90,16 +90,55 @@
         <div
           class="mt-8 flex h-[200px] items-center justify-center rounded-lg bg-[url('/assets/images/bg-form.svg')] bg-cover"
         >
-          <form class="flex grow flex-col gap-4 p-8 md:flex-row">
-            <input
-              placeholder="Enter your link here"
-              class="rounded-lg border border-green-500 px-6 py-4 text-lg outline-none hover:border-blue-500 focus:border-blue-500 active:border-blue-500 md:grow"
-            />
-            <span class="hidden text-start text-red-500"
-              >Please add a link</span
+          <div
+            class="relative flex grow flex-col gap-4 p-8 md:flex-row"
+            [class.gap-1]="errorMsg"
+          >
+            <div class="relative md:grow">
+              <input
+                placeholder="Enter your link here"
+                class="pe-18 w-full rounded-lg border border-green-500 px-6 py-4 text-lg outline-none hover:border-blue-500 focus:border-blue-500 active:border-blue-500"
+                [class.pe-20]="processing"
+                type="url"
+                required
+                [(ngModel)]="inputUrl"
+                (keyup)="errorMsg = inputUrl == '' ? '' : errorMsg"
+              />
+              <svg
+                class="absolute bottom-0 right-6 top-0 m-auto h-8 w-8 animate-spin text-teal-500"
+                [class.hidden]="!processing"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></circle>
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+            </div>
+            <span
+              class="text-start text-red-500 md:absolute md:bottom-0"
+              [class.hidden]="!errorMsg"
+              >{{ errorMsg }}</span
             >
-            <button class="app-btn">Shorten it!</button>
-          </form>
+            <button
+              class="app-btn md:w-[200px]"
+              [disabled]="processing"
+              (click)="short()"
+            >
+              {{ processing ? "Processing..." : "Shorten it!" }}
+            </button>
+          </div>
         </div>
       </div>
     </div>
