@@ -12,7 +12,7 @@ interface UserLink {
 })
 export class AppComponent {
   /** UI State */
-  popupMenuVisible: boolean = true;
+  popupMenuVisible: boolean = false;
 
   /** Data */
   userLinks: UserLink[] = [
