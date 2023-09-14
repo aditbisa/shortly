@@ -13,4 +13,6 @@ export interface ShortenResponse {
     full_share_link: string;
     original_link: string;
   };
+  error_code?: number;
+  error?: string;
 }
