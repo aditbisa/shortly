@@ -24,3 +24,14 @@
     @apply inline-block rounded-lg bg-teal-400 px-8 py-4 text-[20px] font-semibold leading-[30px] text-white hover:bg-teal-600 focus:bg-teal-700 focus:ring-teal-700 disabled:bg-teal-800;
   }
 }
+
+@layer utilities {
+  /**
+   * Word break break-word is deprecated.
+   * https://developer.mozilla.org/en-US/docs/Web/CSS/word-break
+   * https://github.com/tailwindlabs/tailwindcss/discussions/2213#discussioncomment-4905042
+   */
+  .overflow-anywhere {
+    overflow-wrap: anywhere;
+  }
+}

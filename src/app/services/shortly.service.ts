@@ -1,11 +1,16 @@
 import { Inject, Injectable } from '@angular/core';
-import { Observable, delay, of } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 import { NAVIGATOR } from '@app/platform.token';
+import { ShortenResponse } from '@schemas/api.schema';
+import { ApiService } from './api.service';
 
 @Injectable({ providedIn: 'root' })
 export class ShortlyService {
-  constructor(@Inject(NAVIGATOR) private navigator: Navigator) {}
+  constructor(
+    @Inject(NAVIGATOR) private navigator: Navigator,
+    private apiService: ApiService,
+  ) {}
 
   /**
    * Shorten the url.
@@ -14,7 +19,9 @@ export class ShortlyService {
    * @returns - Observable of short link.
    */
   short(url: string): Observable<string> {
-    return of('https://short.url/asd').pipe(delay(500));
+    return this.apiService
+      .shorten(url)
+      .pipe(map((data: ShortenResponse) => data.result.full_short_link));
   }
 
   /**
