@@ -160,7 +160,14 @@
                 <div class="text-lg text-teal-500 md:text-[22px]">
                   {{ link.shortUrl }}
                 </div>
-                <div><button class="app-btn w-full">Copy</button></div>
+                <div>
+                  <button
+                    class="app-btn w-full md:w-[135px]"
+                    (click)="copy(link)"
+                  >
+                    {{ link.copied ? "Copied" : "Copy" }}
+                  </button>
+                </div>
               </li>
             </ng-template>
           </ul>

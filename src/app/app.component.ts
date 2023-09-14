@@ -3,6 +3,10 @@ import { Component } from '@angular/core';
 import { ShortlyService } from '@services/shortly.service';
 import { UserLink } from '@schemas/shortly';
 
+interface UserLinkView extends UserLink {
+  copied: boolean;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,9 +22,17 @@ export class AppComponent {
   errorMsg: string = '';
 
   /** Data */
-  userLinks: UserLink[] = [
-    { url: 'https://adit-bisa.com', shortUrl: 'https://adit.bisa' },
-    { url: 'https://brimvoid.com', shortUrl: 'https://re.link/aJw' },
+  userLinks: UserLinkView[] = [
+    {
+      url: 'https://adit-bisa.com',
+      shortUrl: 'https://adit.bisa',
+      copied: false,
+    },
+    {
+      url: 'https://brimvoid.com',
+      shortUrl: 'https://re.link/aJw',
+      copied: false,
+    },
   ];
 
   /**
@@ -40,9 +52,19 @@ export class AppComponent {
       this.userLinks.push({
         url: this.inputUrl,
         shortUrl,
+        copied: false,
       });
       this.processing = false;
       this.inputUrl = '';
     });
+  }
+
+  /**
+   * Copy url.
+   */
+  copy(link: UserLinkView) {
+    this.shortly.copy(link.shortUrl);
+    link.copied = true;
+    setTimeout(() => (link.copied = false), 5_000);
   }
 }
