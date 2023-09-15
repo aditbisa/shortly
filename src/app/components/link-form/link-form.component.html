@@ -5,8 +5,12 @@
   <div class="relative md:grow">
     <input
       placeholder="Enter your link here"
-      class="pe-18 w-full rounded-lg border border-green-500 px-6 py-4 text-lg outline-none hover:border-blue-500 focus:border-blue-500 active:border-blue-500"
-      [class.pe-20]="processing"
+      class="pe-18 w-full rounded-lg border px-6 py-4 text-lg outline-none hover:border-blue-500 focus:border-blue-500 active:border-blue-500"
+      [ngClass]="{
+        'border-green-500': !!successUrl && successUrl == inputUrl,
+        'border-red-500': errorMsg,
+        'pe-20': processing
+      }"
       type="url"
       required
       [(ngModel)]="inputUrl"

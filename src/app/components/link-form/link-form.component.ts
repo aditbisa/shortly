@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { catchError, of, tap } from 'rxjs';
 
@@ -9,7 +10,7 @@ import { SpinnerIconComponent } from '@components/spinner-icon/spinner-icon.comp
   selector: 'app-link-form',
   templateUrl: './link-form.component.html',
   standalone: true,
-  imports: [FormsModule, SpinnerIconComponent],
+  imports: [FormsModule, SpinnerIconComponent, CommonModule],
 })
 export class LinkFormComponent {
   constructor(private shortly: ShortlyService) {}
@@ -18,6 +19,7 @@ export class LinkFormComponent {
   processing: boolean = false;
   inputUrl: string = '';
   errorMsg: string = '';
+  successUrl: string = '';
 
   /**
    * Process input url.
@@ -36,7 +38,7 @@ export class LinkFormComponent {
       .short(this.inputUrl)
       .pipe(
         tap(() => {
-          this.inputUrl = '';
+          this.successUrl = this.inputUrl;
         }),
         catchError((err: Error) => {
           this.errorMsg = 'Error shortening the link';
