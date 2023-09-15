@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable, Subscription, catchError, map, of, tap } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 import { ShortlyService } from '@services/shortly.service';
 import { UserLink } from '@schemas/shortly.schema';
@@ -17,9 +17,6 @@ export class AppComponent {
 
   /** UI State */
   popupMenuVisible: boolean = false;
-  processing: boolean = false;
-  inputUrl: string = '';
-  errorMsg: string = '';
 
   /** Data */
   userLinks: UserLinkView[] = [];
@@ -38,35 +35,6 @@ export class AppComponent {
   /** Angular LifeCycle: OnDestroy. */
   ngOnDestroy() {
     this.subs.forEach((sub) => sub.unsubscribe());
-  }
-
-  /**
-   * Process input url.
-   */
-  short() {
-    this.errorMsg = '';
-    try {
-      new URL(this.inputUrl);
-    } catch (err) {
-      this.errorMsg = 'Please provide a link';
-      return;
-    }
-
-    this.processing = true;
-    this.shortly
-      .short(this.inputUrl)
-      .pipe(
-        tap(() => {
-          this.inputUrl = '';
-        }),
-        catchError((err: Error) => {
-          this.errorMsg = 'Error shortening the link';
-          return of(null);
-        }),
-      )
-      .subscribe(() => {
-        this.processing = false;
-      });
   }
 
   /**
