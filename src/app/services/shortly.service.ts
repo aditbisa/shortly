@@ -54,7 +54,7 @@ export class ShortlyService {
   /**
    * Save link to storage and publish.
    */
-  save(link: UserLink) {
+  private save(link: UserLink) {
     const links = this.linksSubject.value;
     links.push(link);
     this.storageService.save(links);
@@ -64,7 +64,7 @@ export class ShortlyService {
   /**
    * Load user links from storage and publish.
    */
-  load() {
+  private load() {
     const links = this.storageService.load();
     this.linksSubject.next(links);
   }
