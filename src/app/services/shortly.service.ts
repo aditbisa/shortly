@@ -30,16 +30,20 @@ export class ShortlyService {
    * @returns - Observable of short link.
    * @throws - Error
    */
-  short(url: string): Observable<ShortenResponse> {
+  short(url: string): Observable<UserLink> {
     return this.apiService.shorten(url).pipe(
-      tap((data: ShortenResponse) => {
+      map((data: ShortenResponse) => {
         if (!data.ok) {
           throw new Error(data.error || 'Api Error');
         }
-        this.save({
+
+        const result: UserLink = {
           url,
           shortUrl: data.result.full_short_link,
-        });
+        };
+        this.save(result);
+
+        return result;
       }),
     );
   }
