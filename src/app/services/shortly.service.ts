@@ -51,8 +51,8 @@ export class ShortlyService {
   /**
    * Copy url to clipboard.
    */
-  copy(url: string) {
-    this.navigator.clipboard.writeText(url);
+  copy(url: string): Promise<void> {
+    return this.navigator.clipboard.writeText(url);
   }
 
   /**
