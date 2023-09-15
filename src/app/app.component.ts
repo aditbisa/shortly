@@ -11,7 +11,6 @@ interface UserLinkView extends UserLink {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   constructor(private shortly: ShortlyService) {}
